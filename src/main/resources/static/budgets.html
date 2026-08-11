@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Budgets · ExpenseTracker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+<body>
+  <div class="page-header">
+    <div>
+      <div class="eyebrow">Plan</div>
+      <h1>Budgets</h1>
+      <p class="desc">Set spending limits and keep an eye on how close you are.</p>
+    </div>
+  </div>
+
+  <div class="content-grid">
+    <div class="card">
+      <div class="card-header"><h3>Budget Progress</h3></div>
+      <div id="budget-progress-body">
+        <div class="skeleton" style="height:160px;"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><h3>Set Your Budgets</h3></div>
+      <form id="budget-form" novalidate>
+        <div class="field">
+          <label for="b-daily">Daily budget (&#8377;)</label>
+          <input type="number" id="b-daily" name="dailyBudget" step="0.01" min="0" required>
+          <div class="error-text"></div>
+        </div>
+        <div class="field">
+          <label for="b-weekly">Weekly budget (&#8377;)</label>
+          <input type="number" id="b-weekly" name="weeklyBudget" step="0.01" min="0" required>
+          <div class="error-text"></div>
+        </div>
+        <div class="field">
+          <label for="b-monthly">Monthly budget (&#8377;)</label>
+          <input type="number" id="b-monthly" name="monthlyBudget" step="0.01" min="0" required>
+          <div class="error-text"></div>
+        </div>
+        <button type="submit" class="btn btn-primary">Save Budgets</button>
+      </form>
+    </div>
+  </div>
+
+<script src="/assets/js/api.js"></script>
+<script src="/assets/js/layout.js"></script>
+<script src="/assets/js/budgets.js"></script>
+</body>
+</html>

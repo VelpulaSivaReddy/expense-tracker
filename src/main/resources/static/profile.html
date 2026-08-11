@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profile &amp; Settings · ExpenseTracker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+<body>
+  <div class="page-header">
+    <div>
+      <div class="eyebrow">Account</div>
+      <h1>Profile &amp; Settings</h1>
+      <p class="desc">Manage your account details, security, and preferences.</p>
+    </div>
+  </div>
+
+  <div class="content-grid">
+    <div class="card">
+      <div class="card-header"><h3>Profile Picture</h3></div>
+      <div class="flex items-center gap-12">
+        <span class="avatar" id="profile-avatar" style="width:64px;height:64px;font-size:22px;"></span>
+        <div>
+          <label class="btn btn-outline btn-sm" for="avatar-input" style="cursor:pointer;">Upload new photo</label>
+          <input type="file" id="avatar-input" accept="image/*" class="hidden">
+          <div class="hint mt-8">JPG or PNG, up to 10MB.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><h3>Preferences</h3></div>
+      <div class="flex justify-between items-center">
+        <div>
+          <strong>Dark Mode</strong>
+          <div class="text-secondary" style="font-size:13px;">Switch between light and dark theme.</div>
+        </div>
+        <button class="btn btn-secondary btn-sm" id="dark-mode-toggle">Toggle</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-grid mt-16">
+    <div class="card">
+      <div class="card-header"><h3>Personal Information</h3></div>
+      <form id="profile-form" novalidate>
+        <div class="field">
+          <label for="p-fullname">Full name</label>
+          <input type="text" id="p-fullname" name="fullName" required>
+          <div class="error-text"></div>
+        </div>
+        <div class="field">
+          <label for="p-email">Email address</label>
+          <input type="email" id="p-email" name="email" disabled>
+          <div class="hint">Email address cannot be changed.</div>
+        </div>
+        <div class="field">
+          <label for="p-phone">Phone number</label>
+          <input type="tel" id="p-phone" name="phone">
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:auto;">Update Profile</button>
+      </form>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><h3>Change Password</h3></div>
+      <form id="password-form" novalidate>
+        <div class="field">
+          <label for="current-password">Current password</label>
+          <input type="password" id="current-password" name="currentPassword" required>
+          <div class="error-text"></div>
+        </div>
+        <div class="field">
+          <label for="new-password">New password</label>
+          <input type="password" id="new-password" name="newPassword" required minlength="8">
+          <div class="error-text"></div>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:auto;">Change Password</button>
+      </form>
+    </div>
+  </div>
+
+<script src="/assets/js/api.js"></script>
+<script src="/assets/js/layout.js"></script>
+<script src="/assets/js/profile.js"></script>
+</body>
+</html>

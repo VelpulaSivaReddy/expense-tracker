@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Expenses · ExpenseTracker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+<body>
+  <div class="page-header">
+    <div>
+      <div class="eyebrow">Manage</div>
+      <h1>Expenses</h1>
+      <p class="desc">Every transaction, filterable and searchable.</p>
+    </div>
+    <div class="flex gap-8">
+      <button class="btn btn-outline" id="export-excel-btn">Export Excel</button>
+      <button class="btn btn-outline" id="export-pdf-btn">Export PDF</button>
+      <button class="btn btn-primary" id="add-expense-btn" style="width:auto;">+ Add Expense</button>
+    </div>
+  </div>
+
+  <div class="filters-bar">
+    <input type="text" id="f-keyword" class="grow" placeholder="Search by name or description…">
+    <select id="f-category"><option value="">All Categories</option></select>
+    <select id="f-payment">
+      <option value="">All Payment Methods</option>
+      <option value="CASH">Cash</option>
+      <option value="CREDIT_CARD">Credit Card</option>
+      <option value="DEBIT_CARD">Debit Card</option>
+      <option value="UPI">UPI</option>
+      <option value="NET_BANKING">Net Banking</option>
+      <option value="WALLET">Wallet</option>
+    </select>
+    <input type="date" id="f-start" title="From date">
+    <input type="date" id="f-end" title="To date">
+    <input type="number" id="f-min" placeholder="Min ₹" style="min-width:90px;">
+    <input type="number" id="f-max" placeholder="Max ₹" style="min-width:90px;">
+    <button class="btn btn-secondary btn-sm" id="clear-filters-btn">Clear</button>
+  </div>
+
+  <div class="card">
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th data-sort="expenseDate">Date</th>
+            <th data-sort="title">Expense</th>
+            <th data-sort="categoryId">Category</th>
+            <th data-sort="amount" style="text-align:right;">Amount</th>
+            <th>Payment Method</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="expenses-tbody">
+          <tr><td colspan="6"><div class="skeleton" style="height:20px;"></div></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="pagination">
+      <div class="pg-info" id="pg-info">—</div>
+      <div class="pg-btns">
+        <button class="btn btn-secondary btn-sm" id="pg-prev">&larr; Prev</button>
+        <button class="btn btn-secondary btn-sm" id="pg-next">Next &rarr;</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add/Edit Expense Modal -->
+  <div class="modal-overlay" id="expense-modal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 id="expense-modal-title">Add Expense</h3>
+        <button class="btn-icon" id="expense-modal-close">&times;</button>
+      </div>
+      <form id="expense-form" novalidate>
+        <input type="hidden" name="expenseId">
+        <div class="field">
+          <label for="exp-title">Expense name</label>
+          <input type="text" id="exp-title" name="title" placeholder="e.g. Grocery run" required>
+          <div class="error-text"></div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="exp-amount">Amount (&#8377;)</label>
+            <input type="number" id="exp-amount" name="amount" step="0.01" min="0.01" required>
+            <div class="error-text"></div>
+          </div>
+          <div class="field">
+            <label for="exp-date">Date</label>
+            <input type="date" id="exp-date" name="expenseDate" required>
+            <div class="error-text"></div>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="exp-category">Category</label>
+            <select id="exp-category" name="categoryId" required></select>
+            <div class="error-text"></div>
+          </div>
+          <div class="field">
+            <label for="exp-payment">Payment method</label>
+            <select id="exp-payment" name="paymentMethod" required>
+              <option value="CASH">Cash</option>
+              <option value="CREDIT_CARD">Credit Card</option>
+              <option value="DEBIT_CARD">Debit Card</option>
+              <option value="UPI">UPI</option>
+              <option value="NET_BANKING">Net Banking</option>
+              <option value="WALLET">Wallet</option>
+            </select>
+            <div class="error-text"></div>
+          </div>
+        </div>
+        <div class="field">
+          <label for="exp-description">Description</label>
+          <input type="text" id="exp-description" name="description" placeholder="Optional">
+        </div>
+        <div class="field">
+          <label for="exp-notes">Notes (optional)</label>
+          <textarea id="exp-notes" name="notes" placeholder="Any additional notes"></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" id="expense-cancel-btn">Cancel</button>
+          <button type="submit" class="btn btn-primary" style="width:auto;">Save Expense</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Expense Details Modal -->
+  <div class="modal-overlay" id="details-modal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3>Expense Details</h3>
+        <button class="btn-icon" id="details-modal-close">&times;</button>
+      </div>
+      <div id="details-body"></div>
+    </div>
+  </div>
+
+<script src="/assets/js/api.js"></script>
+<script src="/assets/js/layout.js"></script>
+<script src="/assets/js/expenses.js"></script>
+</body>
+</html>

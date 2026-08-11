@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign In · ExpenseTracker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+<body data-page="login">
+  <div class="auth-shell">
+    <section class="auth-visual">
+      <div class="brand"><span class="brand-mark">&#128176;</span> ExpenseTracker</div>
+      <div class="pitch">
+        <h1>See exactly where every rupee goes.</h1>
+        <p>A clean, focused ledger for your daily spending — budgets, categories, and reports in one calm dashboard.</p>
+      </div>
+      <div class="ledger-preview">
+        <div class="row"><span>Grocery — BigBasket</span><span>&#8377; 1,240.00</span></div>
+        <div class="row"><span>Fuel — Indian Oil</span><span>&#8377; 850.00</span></div>
+        <div class="row"><span>Mobile Recharge</span><span>&#8377; 299.00</span></div>
+      </div>
+      <div class="ring-decor"></div>
+      <div class="ring-decor two"></div>
+    </section>
+
+    <section class="auth-form-side">
+      <div class="auth-card">
+        <div class="kicker">Welcome back</div>
+        <h2>Sign in to your account</h2>
+        <p class="subtitle">Track, budget, and understand your spending.</p>
+
+        <form id="login-form" novalidate>
+          <div class="field">
+            <label for="email">Email address</label>
+            <input type="email" id="email" name="email" placeholder="you@example.com" required>
+            <div class="error-text"></div>
+          </div>
+          <div class="field">
+            <div class="flex justify-between items-center">
+              <label for="password">Password</label>
+              <a href="/forgot-password.html" style="font-size:12.5px;color:var(--green-600);font-weight:700;">Forgot password?</a>
+            </div>
+            <div class="password-field">
+              <input type="password" id="password" name="password" placeholder="••••••••" required>
+              <button type="button" class="toggle-visibility">Show</button>
+            </div>
+            <div class="error-text"></div>
+          </div>
+          <button type="submit" class="btn btn-primary">Sign In</button>
+        </form>
+
+        <div class="auth-footer-link">
+          Don't have an account? <a href="/register.html">Create one</a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+<script src="/assets/js/api.js"></script>
+<script src="/assets/js/auth.js"></script>
+</body>
+</html>
