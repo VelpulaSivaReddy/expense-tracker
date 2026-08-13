@@ -1,20 +1,31 @@
-# ---------- Build Stage ----------
-FROM maven:3.9.9-eclipse-temurin-17 AS build
+# ===========================
+# Build Stage
+# ===========================
+FROM maven:3.9.8-eclipse-temurin-17 AS builder
 
 WORKDIR /app
 
 COPY pom.xml .
-COPY src ./src
+COPY mvnw .
+COPY .mvn .mvn
 
-RUN mvn clean package -DskipTests
+RUN chmod +x mvnw
 
-# ---------- Runtime Stage ----------
+RUN ./mvnw dependency:go-offline
+
+COPY src src
+
+RUN ./mvnw clean package -DskipTests
+
+# ===========================
+# Runtime Stage
+# ===========================
 FROM eclipse-temurin:17-jre
 
 WORKDIR /app
 
-COPY --from=build /app/target/*.jar app.jar
+COPY --from=builder /app/target/expensetracker.jar app.jar
 
 EXPOSE 8080
 
-ENTRYPOINT ["java","-jar","app.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]

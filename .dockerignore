@@ -1,5 +1,8 @@
-target/
-.git/
-.idea/
+target
+.git
+.github
+.idea
+.vscode
+uploads
+*.log
 .env
-uploads/
